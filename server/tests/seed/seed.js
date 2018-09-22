@@ -18,17 +18,23 @@ const user = [{
 }, {
     _id: userTwoId,
     email: 'stupop@hotmail.co.uk',
-    password: "userTwoPass"
+    password: "userTwoPass",
+    tokens: [{
+        access: 'auth',
+        token: jwt.sign({_id: userTwoId, access: 'auth'}, 'abc123').toString()
+    }]
 }]
 
 const todos = [{
     _id: new ObjectID(),
-    text: 'Frist test todo'
+    text: 'Frist test todo',
+    _creator: userOneId
 }, {
     _id: new ObjectID(),
     text: 'Second test todo',
     completed: true,
-    completedA: 333
+    completedA: 333,
+    _creator: userTwoId
 }]
 
 // clear all the todo before testing
